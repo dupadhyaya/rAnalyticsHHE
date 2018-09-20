@@ -1,4 +1,5 @@
 #Data Format in R 
+#When we import data into R, dates and times are usually stored as character or factor by default due to symbols such as “-”, “:” and “/”
 
 cdate1='15/August/1947'
 cdate1
@@ -41,4 +42,9 @@ class(date3)
 class(cdate2)
 
 
+#The “Date” class means dates are stored as the number of days since January 1, 1970, with negative values for earlier dates. We can use the as.numeric function to view the raw values.
 
+date1
+as.numeric(date1)
+date2
+as.numeric(date2)
