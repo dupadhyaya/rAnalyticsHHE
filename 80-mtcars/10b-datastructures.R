@@ -1,6 +1,5 @@
 # Data Structures in Slides
 
-?seq
 #control+enter when you are in the line to execute
 #
 # Vectors-----
@@ -28,8 +27,10 @@ x[c(2.4, 3.54)]    # real numbers are truncated to integers
 #[1] -3 -2 -1  0  1  2
 x[2] <- 0; x        # modify 2nd element
 #[1] -3  0 -1  0  1  2
+
 x[x<0] = 5; x   # modify elements less than 0
 #[1] 5 0 5 0 1 2
+
 x = x[1:4]; x      # truncate x to first 4 elements
 #[1] 5 0 5 0
 
@@ -41,8 +42,6 @@ x
 #NULL
 x[4]
 #NULL
-
-
 
 
 #Matrix-----

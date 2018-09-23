@@ -29,6 +29,4 @@ View(mtcars)  #View DF in seperate tab like excel
 mtcars[1]  #print 1st column
 mtcars$mpg[1] #1 in vectors print 1st position value in the vector
 
-x = c(1,4,2, 20:300)
-x
-x[274:280]
+
