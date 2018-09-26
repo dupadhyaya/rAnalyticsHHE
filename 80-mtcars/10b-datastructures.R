@@ -6,25 +6,32 @@
 (x=1:10)
 (x=c(1,2,3,4,5,10))
 (x=letters[1:10])
-(x=c(T,F,T,T))
+(x=c(T,FALSE,TRUE,T))
 
 #access elements
-(x = seq(0,10,by=2))
+(x = seq(from=0,to=10,by=2))
+?seq
 #[1]  0  2  4  6  8 10
+x
 x[3]  # access 3rd element
 #[1] 4
+
 x[c(2, 4)]     # access 2nd and 4th element
 #[1] 2 6
+
 x[-1]          # access all but 1st element
 #[1]  2  4  6  8 10
+
 x[c(2, -4)]    # cannot mix positive and negative integers
 #Error in x[c(2, -4)] : only 0's may be mixed with negative subscripts
+
 x[c(2.4, 3.54)]    # real numbers are truncated to integers
 #[1] 2 4
 
 #modify
 (x = -3:2)
 #[1] -3 -2 -1  0  1  2
+
 x[2] <- 0; x        # modify 2nd element
 #[1] -3  0 -1  0  1  2
 
@@ -66,6 +73,9 @@ m1
 (m3 = 1:24)
 dim(m3)= c(6,4)
 m3
+m3a = 1:48
+dim(m3a)= c(4,12)
+m3a
 
 #access elements
 m2
@@ -138,21 +148,26 @@ plot(density(marks)); abline(v=50)
 (marks2 = ceiling(rnorm(30,40,5)))
 plot(density(marks2)); abline(v=c(40,50))
 (course = sample(c('BBA','MBA'), size=30, replace=T, prob=c(.5,.5)))
+
 #create DF
-df1= data.frame(rollno, sname, gender, marks, marks2, course)
+df1= data.frame(rollno, sname, gender, marks, marks2, course, stringsAsFactors = F)
 str(df1) #structure of DF
 head(df1) #top 6 rows
 head(df1,n=3) #top 3 rows
 tail(df1) #last 6 rows
 class(df1) # DF
 summary(df1) #summary
+df1$gender = factor(df1$gender)
+df1$course = factor(df1$course)
+summary(df1) #summary
 
 df1  #full data
 df1[,c('course')]
 df1$course
 df1$gender  # one column
+head(df1)
 df1[ , c(2,4)] #multiple columns
-df1[1:10 ,] #select rows, all columns
+df1[1:10 , ] #select rows, all columns
 #as per conditionis
 names(df1)
 df1[ marks > 50 & gender=='F', c('rollno', 'sname','marks')]
@@ -162,11 +177,9 @@ df1[ marks > 50 & gender=='F', ]
 names(df1)  # names of columns
 dim(df1)  #Dimensions
 
-aggregate(df1$marks, by=list(df1$gender), FUN=min)
+aggregate(df1$marks, by=list(df1$gender), FUN=sd)
 
 (df2 = aggregate(cbind(marks,marks2) ~ gender + course, data=df1, FUN=max))
-
-
 
 
 #List -----
@@ -174,7 +187,7 @@ g ="My First List"
 h = c(25, 26,18,39)
 j = matrix(1:10,nrow=2)
 k = c('one','two','three')
-mylist = list(title=g, ages=h, j, h)
+mylist = list(title=g, ages=h, j, k)
 mylist
 mylist[2]
 mylist[[2]]
@@ -182,16 +195,15 @@ mylist[['ages']]
 mylist$ages
 
 
-
-
-
 #Factor -----
 
 (grades = sample(c('A','B','C','D'), size=30, replace=T, prob=c(.3,.2,.4,.1)))
 table(grades)
+prop.table(table(grades))
 (gradesFactor = factor(grades))
 (gradesFactorOrdered = factor(grades, ordered=T))
 (gradesFactorOrderedLevels = factor(grades, ordered=T, levels=c('D','C','B','A')))
+table(gradesFactorOrderedLevels)
 class(grades)
 class(gradesFactorOrdered)
 class(gradesFactorOrderedLevels)

@@ -1,4 +1,5 @@
 #mtcars data set - base R
+data()
 
 ?mtcars #help on dataset
 

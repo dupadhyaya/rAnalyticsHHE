@@ -11,10 +11,10 @@ tail(mtcars,n=3)
 #mtcars$mpg[1:10]  #vector
 head(mtcars[1:3]) #DF
 head(mtcars[,1:3]) #DF
-(mtcars[1:6,1:3])
+(mtcars[1:3,1:6])
 names(mtcars)[c(1,5,6,7)]
 head(mtcars[c('mpg','cyl','am')])
-head(mtcars[,c(1,5,6,7)])
+tail(mtcars[,c(1,5,6,7)])
 head(mtcars[,-1])  #mpg excluded
 head(mtcars[,-c(1:5)]) #excluded 1st to 5th
 
@@ -26,7 +26,7 @@ mtcars[mtcars$mpg > 25,]
 mtcars[mtcars$mpg <= 25,]
 nrow(mtcars[mtcars$mpg > 25,]) ;nrow(mtcars[mtcars$mpg <= 25,])
 dim(mtcars)
-mtcars[mtcars$mpg > 25 & mtcars$gear==4, 1:5]
+mtcars[mtcars$mpg > 30 & mtcars$gear==4, 1:11]
 mtcars[grep("Mazda", rownames(mtcars)),] #match name in rownames or a column
 head(mtcars)
 ?grep

@@ -12,6 +12,8 @@ k
 summary(m1)
 (m2 = lm(mpg ~ hp + wt + qsec , data=mtcars))
 summary(m2)
+(m3 = lm(mpg ~ hp + wt , data=mtcars))
+summary(m3)
 
 anova(m1, m2)  #if p value is < 0.05 reject Ho
 #Ho : Model m1, is better : m1 should be subset of m2

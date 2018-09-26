@@ -8,6 +8,8 @@ dim(mtcars); names(mtcars)
 (cbind(ndata, data.frame(mpg=c('?','?'))))
 
 #Linear Model
+names(mtcars)
+?lm
 lmfit1 = lm(mpg ~ wt + cyl, data=mtcars)
 
 summary(lmfit1)
