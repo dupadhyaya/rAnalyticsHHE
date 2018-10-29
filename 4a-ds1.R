@@ -5,12 +5,11 @@
 # Vectors-----
 x=1:10   #create seq of nos from 1 to 10
 x
+x1  #not created so far, hence error
 (x1 <- 1:20)
-
 (x1=1:30)
 (x2=c(1,2,13,4,5))
 class(x2)
-
 (x3=letters[1:10])
 class(x3)
 LETTERS[1:26]
@@ -45,23 +44,33 @@ x6[c(2, -4)]    # cannot mix positive and negative integers
 #Error in x[c(2, -4)] : only 0's may be mixed with negative subscripts
 x6[-c(1,5,20)]
 
-#sort 
-sort(x6)
-sort(x6[-c(1,2)])
-sort(x6, decreasing=T)
-rev(x6)
-
-seq(-3, 10, by=.2)
-x6[-c(1:12)]
-
 x = x[1:4]; x      # truncate x to first 4 elements
+
+#sort 
+x6 ; rev(x6)
+sort(x6) #ascending order
+sort(x6, decreasing=T)  #Descending Order
+
+
 #[1] 5 0 5 0
+#print values & number of such values in x6 vector from 30 to 40
+x6[ x6 > 10 & x6 < 40]
+length(x6[ x6 > 10 & x6 < 40])
+#print last 5 positions of vector x6
+tail(x6)
+?tail
+tail(x6, n=5)
+#find the middle value by position
+x6[length(x6)/2]
+#replace this value to 99
+x6[length(x6)/2] =99
+x6[length(x6)/2]
+x6[1:5] = 99
+head(x6)
 
-
-
-#Matrices
-(x=100:111)
-(m1 = matrix(100:111, nrow=4))
+#Matrices : rows X columns : it can have only type data either numeric or character/ logical
+(x=100:111); length(x)
+(m1 = matrix(100:111, nrow=4)) #ncol = 3
 (m2 = matrix(x, ncol=3, byrow=T))
 matrix(x, ncol=6)
 class(m1)
@@ -76,7 +85,6 @@ m1[,-c(1,3)]
 #find values as per conditions
 m2[m2 > 105 & m2 < 110]
 
-
 #Data Frame & Factor
 #create Vectors to be combined into DF
 (rollno = 1:30)
@@ -90,13 +98,15 @@ rollno; sname; gender ; marks1 ; marks2; course; grades
 
 #create DF
 df1= data.frame(rollno, sname, gender, marks1, marks2, course, grades, stringsAsFactors = F)
-str(df1) #structure of DF
 head(df1) #top 6 rows
+str(df1) #structure of DF
 head(df1,n=3) #top 3 rows
 tail(df1) #last 6 rows
 class(df1) # DF
 summary(df1) #summary
-
+df1
+head(df1)
+df1$sname
 #convert few columns to Factor(Categories)
 df1$gender = factor(df1$gender)
 df1$course = factor(df1$course)
@@ -105,22 +115,45 @@ df1$grades = factor(df1$grades, ordered=T, levels=c('E','D','C','B','A'))
 str(df1)
 summary(df1)
 
-
 df1  #full data
 df1$gender  # one column
-head(df1); tail(df1)
 df1[1:3 , c(2,4)] #multiple columns
 
-#as per conditionis
-df1[ marks1 > 50 & gender=='F', c('rollno', 'sname','gender', 'marks1')]
+#as per condition
+df1[ marks2 < 50 & gender=='F', c('rollno', 'sname','gender', 'marks1')]
+range(df1$marks2)
 df1[ marks1 > 50 & gender=='F', c(1,2)]
 df1[ marks1 > 50 | gender=='F', ]
-
 names(df1)  # names of columns
 dim(df1)  #Dimensions
 
-aggregate(df1$marks, by=list(df1$gender), FUN=max)
-aggregate(marks1 ~ gender, data=df1, FUN=max)
+aggregate(df1$marks1, by=list(df1$gender), FUN=mean)
+aggregate(marks1 ~ gender, data=df1, FUN=mean)
 aggregate(cbind(marks1, marks2) ~ gender + course, data=df1, FUN=mean)
+?aggregate
+#Sort DF
+df1[ order(df1$gender, df1$marks1),]
+#Course, grades - decre 
+df1$grades
+df1[ order(df1$course, df1$gender),]
+df1[ order(df1$course, desc(df1$grades)),]
+df1[ order(df1$course, df1$grades),]
 
+#
+fivenum(df1$marks1); summary(df1$marks1)
+boxplot(df1$marks1)
+abline(h=fivenum(df1$marks1), col=1:5,lwd=2)
+boxplot(marks1 ~ gender, data=df1)
+boxplot(marks2 ~ gender, data=df1)
+boxplot(marks2 ~ course, data=df1, col=c('red','green'))
+title("Box Plot of Marks2 vs Course")
+boxplot(marks2 ~ grades, data=df1, col=1:5)
+
+
+aggregate(cbind(marks1, marks2) ~ gender, data=df1, FUN=mean)
+
+
+#install.packages('dplyr') #after install comment
+#install only once in ur system; load it whenever required
+library(dplyr)
 
