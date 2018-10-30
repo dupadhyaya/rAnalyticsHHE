@@ -7,17 +7,21 @@ inputData <- read.csv("https://stats.idre.ucla.edu/stat/data/binary.csv")
 ## view the first few rows of the data
 head(inputData)
 inputData
+dim(inputData)
 summary(inputData)
-sapply(inputData, sd)
+sapply(inputData, sd)  # sd(inputData$gre)
 str(inputData)
 data= inputData  # make a copy for futher analysis
 
 data$rank = factor(data$rank)
 data$admit = factor(data$admit)
+summary(data)
 
 ## 2way contingency table of cat outcome and predictors we want
 ## to make sure there are not 0 cells
-xtabs(~admit + rank, data = data)
+xtabs(~ admit + rank, data = data)
+xtabs(~ cyl + gear + am + vs , data = mtcars)
+
 
 #create Logistic Model
 mylogit <- glm(admit ~ gre + gpa + rank, data = data, family = "binomial")
@@ -30,6 +34,48 @@ summary(mylogit)
 
 ## odds ratios only
 exp(coef(mylogit))
+range(data$gre); range(data$gpa)
+head(data)
+data[data$admit==1,]
+
+(ndata4 = data.frame(gre=c(379,520), gpa=c(3.71,4), rank=factor(c(4,1))))
+(p3 =predict(mylogit, newdata=ndata4, type="response"))
+p3
+(p3b=ifelse(p3 < .5, 0, 1))
+cbind(ndata4, p3, p3b)
+
+#divide data into 2 parts : train 70% & test 30%
+# train
+nrow(data) * .7
+index = sample(nrow(data), size=nrow(data)* .7, replace=F)
+length(index)
+train = data[index, ]
+dim(train)
+# test
+test = data[-index, ]
+dim(test)
+
+# create model using train set data
+mylogit2 = glm(admit ~ gre + gpa + rank, data = train, family = "binomial")
+summary(mylogit2)
+# predict on test set data
+(ptest = predict(mylogit2, newdata = test, type='response'))
+# prob -> 0, 1 using if else statements
+AIC(mylogit); AIC(mylogit2) #comparing models
+(ptestb=ifelse(ptest < .5, 0, 1))
+# test$admin compare with predicted admit values
+compare = cbind(test, ptestb)
+head(compare)
+# confusion matrix
+(cm=table(compare$admit, compare$ptestb))
+(73 + 8) / (73 + 6 + 33 + 8)  #Accuracy of model
+
+library(caret)
+confusionMatrix(cm)
+
+#---------------------------------
+
+
 
 #Predict admit for input data
 prob=predict(mylogit,type=c("response"))
