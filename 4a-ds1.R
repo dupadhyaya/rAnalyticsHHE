@@ -70,6 +70,7 @@ head(x6)
 
 #Matrices : rows X columns : it can have only type data either numeric or character/ logical
 (x=100:111); length(x)
+matrix(1, nrow=4, ncol=2)
 (m1 = matrix(100:111, nrow=4)) #ncol = 3
 (m2 = matrix(x, ncol=3, byrow=T))
 matrix(x, ncol=6)
@@ -81,9 +82,17 @@ m1
 # access elements of matrix
 m1[1,2:3]
 m1[c(1,3),]
-m1[,-c(1,3)]
+m1[,-c(1,3), drop=F]
 #find values as per conditions
 m2[m2 > 105 & m2 < 110]
+m1
+colnames(m1)=c('C1','C2','C3')
+rownames(m1)=c('R1','R2','R3','R4')
+colMeans(m1) ; rowMeans(m1)
+colSums(m1) ; rowSums(m1)
+min(m1); max(m1);sd(m1)
+pie(colSums(m1))
+barplot(rowSums(m1), col=1:4, ylim=c(0,200))
 
 #Data Frame & Factor
 #create Vectors to be combined into DF
@@ -144,16 +153,33 @@ fivenum(df1$marks1); summary(df1$marks1)
 boxplot(df1$marks1)
 abline(h=fivenum(df1$marks1), col=1:5,lwd=2)
 boxplot(marks1 ~ gender, data=df1)
-boxplot(marks2 ~ gender, data=df1)
+boxplot(marks2 ~ course, data=df1)
 boxplot(marks2 ~ course, data=df1, col=c('red','green'))
 title("Box Plot of Marks2 vs Course")
 boxplot(marks2 ~ grades, data=df1, col=1:5)
-
-
 aggregate(cbind(marks1, marks2) ~ gender, data=df1, FUN=mean)
 
 
 #install.packages('dplyr') #after install comment
 #install only once in ur system; load it whenever required
 library(dplyr)
+head(df1)
+df1 %>% select(sname, gender, marks1) %>% head
+df1 %>% filter(marks2 > 45)
+df1 %>% filter(marks1 > 45 & gender == 'F')
+
+names(df1)
+head(df1)
+df1 %>% group_by(course,gender) %>% summarise(MEAN1 = mean(marks1), MAX2 = max(marks2))
+df1 %>% group_by(course,gender, grades) %>% count
+
+df1 %>% sample_n(2)
+df1 %>% sample_frac(.3)
+
+#Stratied Sampling
+out2 <- df1 %>%  group_by(gender) %>%  sample_frac(.2)
+out2
+table(df1$gender)
+
+df1 %>% arrange(gender, course, desc(marks1)) %>% select(gender, course, marks1)
 

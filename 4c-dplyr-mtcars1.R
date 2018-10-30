@@ -12,8 +12,14 @@ names(mtcars)
 
 #dplyr - mtcars
 library(dplyr)
-
+df = mtcars
+df$carnames = rownames(mtcars)
+df = cbind(cars=rownames(mtcars), mtcars)
+df %>% mutate(add_c)
+head(df)
+head(df)
 #Filter----
+filter(df, cyl == 8) %>% select(carnames, mpg,cyl)
 
 filter(mtcars, cyl == 8)
 filter(mtcars, cyl < 6)

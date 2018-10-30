@@ -44,6 +44,7 @@ View(mtcars) # spreasheet like form base pacakge
 
 #rownames----
 df = tibble::rownames_to_column(df, var='cars')
+df
 df2 = mtcars
 names(df)
 
@@ -87,9 +88,6 @@ mtcars %>% summarise(mean(mpg), max(wt))
 mtcars %>% summarise_all(mean)
 mtcars %>% select(wt, gear)%>% summarise_all(c("min", "max"))
 mtcars %>% summarise_all(funs(med = median))
-
-
-
 
 
 mtcars %>% summarise_if(is.numeric, mean, na.rm = TRUE)
