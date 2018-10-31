@@ -18,23 +18,34 @@ head(titanic)
 names(titanic)
 data1 = titanic[,c(2,3,5,6,7)]  #select few columns only
 head(data1)
+str(data1)
+table(data1$pclass); table(data1$sex)
+sapply(data1[c(1,2,3,5)], table)
 
 #load libraries
 library(rpart)
 library(rpart.plot)
-
-#Decision Tree
+names(data1)
+#Decision Tree- classification tree : predict survived 0 or 1
 fit1 = rpart(survived ~ . , data = data1, method = 'class')
 fit1
-rpart.plot(fit1, extra = 106, cex=.8, nn=T)  #plot
+rpart.plot(fit1, cex=.8, nn=T)  #plot
 
 printcp(fit1) #select complexity parameter
 #which has least xerror 
 prunetree1 = prune(fit1, cp=.014)
+# here we select a different value, no of splits will reduce
+par(mfrow=c(1,2))
+rpart.plot(prunetree1, extra=104, cex=.8,nn=T)
 rpart.plot(prunetree1, cex=.8,nn=T)
+par(mfrow=c(1,1))
+rpart.plot(prunetree1, extra=104, cex=.8,nn=T)
 prunetree1
 nrow(data1)
-
+table(data1$survived)
+809/1309
+prunetree1$variable.importance
+table(data1$sex, data1$survived)
 #Predict class category or probabilities
 
 (testdata1 = sample_n(data1,2))
@@ -90,7 +101,7 @@ rpart.plot(prunetree2, nn=T, cex=.8, type=4)
 
 #Predict for test value
 (testdata2 = sample_n(data2,2))
-
+testdata2
 (predictedSales=predict(prunetree2, newdata=testdata2, type='vector'))
 cbind(testdata2, predictedSales)
 #next line will show error because we have to predict numerical value instead of class/ category, so type of response reqd is vector not class

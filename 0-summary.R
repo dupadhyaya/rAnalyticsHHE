@@ -1,4 +1,4 @@
-#IIM Kpv -5th Day
+#IIM Kpv -6th Day
 
 #Review
 #R, RStudio, Git
@@ -29,4 +29,21 @@ is.na(mydf)
 sum(is.na(mydf))
 ?read.csv
 str(mydf)
-#sunder
+#-------------
+#linear Regression
+fit = lm(y ~ x1 + x2, data=...)
+summary(fit)
+predict(fit, newdata=.. )
+plot(fit)
+
+#logistic Regression
+fit2 = glm(y ~ x1 + x2 + ... data = .., family='binomial')
+summary(fit2)
+predict(fit2, newdata=..., type='response')
+ifelse(p > .5, 0,1)
+confusionmatrix
+
+#partition data into train and test
+index=sample(length(df), size= , replace=F)
+train = df[index,]
+test = df[-index,]
