@@ -47,3 +47,35 @@ confusionmatrix
 index=sample(length(df), size= , replace=F)
 train = df[index,]
 test = df[-index,]
+
+
+#Decision Tree
+#what type of tree - classification or regression
+#choose relevant algo or packages
+#check of missing values in target variable Y
+#divide dataset into train and test
+#create decision tree model using train set
+#rpart : use cp to prune the tree
+#ctree : cp not reqd, auto pruning
+#predict for test set
+#confusion matrix for classification tree
+#rmse value for regression
+sqrt(mean(actual_Y - predictedY)^2)
+
+index = sample(nrow(women), size=.7 * nrow(women))
+train = women[index,]
+test = women[-index,]
+fit = lm(weight ~ height, data=train)
+summary(fit)
+(pwt = predict(fit, newdata=test))
+cbind(test, pwt)
+library(ModelMetrics)
+rmse(test$weight, pwt)  
+
+(test$weight-pwt)^2
+sqrt(mean((test$weight-pwt)^2))
+
+
+#Clustering
+#kmeans
+#noofclusters
