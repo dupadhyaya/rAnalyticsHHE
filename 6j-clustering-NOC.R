@@ -1,6 +1,9 @@
 #Optimal Number of Clusters in data
 #Reduce total within ss
+library(NbClust)
+
 iris
+dim(iris)
 head(iris)
 table(iris$Species)
 
@@ -26,9 +29,14 @@ km5$tot.withinss
 
 km1$tot.withinss; km2$tot.withinss ; km3$tot.withinss ; km4$tot.withinss ; km5$tot.withinss
 
+withinss = c(km1$tot.withinss, km2$tot.withinss, km3$tot.withinss, km4$tot.withinss , km5$tot.withinss)
+noclusters = c(1,2,3,4,5)
+plot(x=noclusters, y=withinss, type='b')
+
 #Selecting the number of clusters
 library(NbClust)
 nc = NbClust(data, distance="euclidean",min.nc=2, max.nc=15, method="average")
+
 ?NbClust
 kiris = kmeans(data, centers=3)
 kiris$centers

@@ -12,6 +12,7 @@ head(data)
 names(data)
 summary(data)
 str(data)
+sapply(data, class)
 ###Verify the data
 colnames(data)
 class(data$Age)
