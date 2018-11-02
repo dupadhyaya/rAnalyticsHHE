@@ -1,4 +1,10 @@
 # Association Rules - Groceries data set ####
+#load the libraries
+#load the data set - transaction format built in - Groceries
+#frequent items - min support
+#rules - minsp, minconf
+#support, confidence and lift : sort, filter, interpret
+
 
 library(arules)  #install first
 library(arulesViz) #install first
@@ -11,12 +17,13 @@ str(Groceries)
 Groceries
 arules::LIST(Groceries[1:6])  #another view
 arules::inspect(Groceries[1:5])
+arules::inspect(Groceries[100])
+
 length(Groceries)
 #LIST(Groceries[length(Groceries)-5:length(Groceries)])
 
 #Find Frequent Itemset
-#Find Frequent Itemset
-frequentItems = eclat (Groceries, parameter = list(supp = 0.01, minlen= 2, maxlen = 5)) 
+frequentItems = eclat(Groceries, parameter = list(supp = 0.001, minlen= 2, maxlen = 5)) 
 arules::inspect(frequentItems)
 frequentItems
 inspect(frequentItems[10:15])
@@ -40,8 +47,10 @@ rulesc <- sort (rules, by="confidence", decreasing=TRUE)
 inspect(rulesc[1:5])
 rulesl <- sort (rules, by="lift", decreasing=TRUE)
 inspect (rulesl[1:5])
-#which items have strong confidence and lift 
+inspect (rulesl)
 
+#which items have strong confidence and lift 
+rules
 #How To Control The Number Of Rules in Output ?
 #maxlen, minlen, supp, conf
 rules2 = apriori (Groceries, parameter = list (supp = 0.001, conf = 0.5, minlen=2, maxlen=6)) 
@@ -65,17 +74,25 @@ inspect(subset1[1:10])
 subset2a = subset(rules2, subset=lhs %ain% c('baking powder','soda') )  #all items in lhs
 inspect(subset2a)
 subset2b = subset(rules2, subset=lhs %in% c('baking powder','soda') )  #any of these in lhs
-inspect(subset2b[1:5])
+inspect(subset2b[1:5])  #first 5 rules
 
 subset3 = subset(rules2, subset=rhs %in% 'bottled beer' & confidence > .7, by = 'lift', decreasing = T)
 inspect(subset3)
 subset4 = subset(rules2, subset=lhs %in% 'bottled beer' & rhs %in% 'whole milk' )
 inspect(subset4[1:5])
 
-#Visualizing The Rules -----
-plot(subset1[1:10]) 
-plot(subset1[1:10], measure=c("support", "lift"), shading="confidence")
+subset5 = subset(rules2, subset=(rhs %pin% 'milk' | lhs %pin% 'milk') & confidence > .8)   #this item in rhs
+inspect(subset5)
 
+#Visualizing The Rules -----
+#(https://cran.r-project.org/web/packages/arulesViz/vignettes/arulesViz.pdf)
+plot(subset1[1:10]) 
+inspect(subset1[1:10])
+plot(subset1[1:10], measure=c("support", "lift"), shading="confidence")
+plot(subset1, method = "two-key plot")
+plot(subset1, method = "grouped")
+plot(subset1[1:5], method = "paracoord")
+inspect(subset1[1:5])
 #
 #we can create subset conditions at the time of creation of rules
 #Find what factors influenced an event ‘X’

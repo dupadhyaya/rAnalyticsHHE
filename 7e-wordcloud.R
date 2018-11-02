@@ -10,6 +10,7 @@ head(demoFreq)
 str(demoFreq)
 #wordcloud
 wordcloud2(demoFreq, size=1.6)
+head(demoFreq[order(-demoFreq$freq),])
 ?wordcloud2
 
 #create your own set of words

@@ -79,3 +79,17 @@ sqrt(mean((test$weight-pwt)^2))
 #Clustering
 #kmeans
 #noofclusters
+#---------
+
+#Types - Classification & Regression Trees
+#algo - CART and ctree
+#classification : predict a class / category
+#regression : predict a continuous value eg. Sales
+#CART - gini/ entropy / rin variance to select most important variable
+#ctree - stats significance ie. pvalue
+#CART - cp for pruning : to avoid growing the tree very large
+#cp should be such that xerror is the least
+
+#clustering
+#group /segmentation 
+#kmeans : no of clusters : optimal no of clusters NbClust
