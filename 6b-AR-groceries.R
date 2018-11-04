@@ -4,7 +4,12 @@
 #frequent items - min support
 #rules - minsp, minconf
 #support, confidence and lift : sort, filter, interpret
-
+# total transactions - 100
+# burger - 80
+# pepsi - 50
+# pepsi + burger - 40
+#pepsi -> burger :4/5
+#burger -> pepsi : 4/8
 
 library(arules)  #install first
 library(arulesViz) #install first
@@ -23,8 +28,9 @@ length(Groceries)
 #LIST(Groceries[length(Groceries)-5:length(Groceries)])
 
 #Find Frequent Itemset
-frequentItems = eclat(Groceries, parameter = list(supp = 0.001, minlen= 2, maxlen = 5)) 
-arules::inspect(frequentItems)
+frequentItems = eclat(Groceries, parameter = list(supp = 0.01, minlen= 2, maxlen = 5)) 
+.01 * 9835
+inspect(frequentItems)
 frequentItems
 inspect(frequentItems[10:15])
 #Descending Sort frequent items by count : 1 to 25 itemsets
@@ -34,14 +40,15 @@ inspect(sort (frequentItems, by="count", decreasing=F)[1:25])
 #Support is : support(A&B) = n(A&B)/ N
 #Plot the Frequency Plot
 itemFrequencyPlot(Groceries,topN = 15,type="absolute")
-itemFrequencyPlot(Groceries, topN = 10, type='relative')
+itemFrequencyPlot(Groceries, topN = 20, type='relative')
 abline(h=0.15)
 
 # Create rules and the relationship between items
 #parameters are min filter conditions 
-rules = apriori(Groceries, parameter = list(supp = 0.005, conf = 0.5, minlen=2))
+rules = arules::apriori(Groceries, parameter = list(supp = 0.005, conf = 0.5, minlen=2))
 rules
 inspect (rules[1:5])
+options(digits=3)
 #Sort Rules by confidence, lift and see the data
 rulesc <- sort (rules, by="confidence", decreasing=TRUE)
 inspect(rulesc[1:5])
@@ -61,7 +68,7 @@ inspect(rules2[1:50])
 # items - items, that make up itemsets
 # %in% - matches any
 # %ain% - matches all
-# %pin% - matches partially
+# %pin% - matches partially - milk and whole milk for pin in milk
 # default - no restrictions applied
 # & - additional restrictions on lift, confidence etc.
 
@@ -75,14 +82,14 @@ subset2a = subset(rules2, subset=lhs %ain% c('baking powder','soda') )  #all ite
 inspect(subset2a)
 subset2b = subset(rules2, subset=lhs %in% c('baking powder','soda') )  #any of these in lhs
 inspect(subset2b[1:5])  #first 5 rules
-
+inspect(subset2b)
 subset3 = subset(rules2, subset=rhs %in% 'bottled beer' & confidence > .7, by = 'lift', decreasing = T)
 inspect(subset3)
 subset4 = subset(rules2, subset=lhs %in% 'bottled beer' & rhs %in% 'whole milk' )
 inspect(subset4[1:5])
 
 subset5 = subset(rules2, subset=(rhs %pin% 'milk' | lhs %pin% 'milk') & confidence > .8)   #this item in rhs
-inspect(subset5)
+inspect(subset5[c(1:10, 20:30)])
 
 #Visualizing The Rules -----
 #(https://cran.r-project.org/web/packages/arulesViz/vignettes/arulesViz.pdf)

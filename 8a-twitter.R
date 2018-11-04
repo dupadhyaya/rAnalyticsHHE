@@ -8,7 +8,7 @@ library("syuzhet") #library for sentiment analysis - comparison
 
 download.file(url="http://curl.haxx.se/ca/cacert.pem",destfile="cacert.pem")
 
-#https://apps.twitter.com/
+#https://apps.twitter.com/   create developer account here to use ur own keys
 #different for each account
 consumerKey="uRDuync3BziwQnor1MZFBKp0x"
 consumerSecret="t8QPLr7RKpAg4qa7vth1SBsDvoPKawwwdEhNRjdpY0mfMMdRnV"
@@ -19,6 +19,7 @@ AccessTokenSecret="3ap8BZNVoBhE2GaMGLfuvuPF2OrHzM3MhGuPm96p3k6Cz"
 
 cred <- OAuthFactory$new(consumerKey=consumerKey, consumerSecret=consumerSecret, requestURL='https://api.twitter.com/oauth/request_token', accessURL='https://api.twitter.com/oauth/access_token', authURL='https://api.twitter.com/oauth/authorize')
 
+#IMPORTANT------
 cred$handshake(cainfo="cacert.pem") # it will take you to browser: authorise, copy key and paste in R Studio at Console. Once it stores, it move to R prompt
 save(cred, file="twitter authentication.Rdata") # store this to avoid asking again
 #Load saved authentication cert
@@ -26,8 +27,8 @@ load("twitter authentication.Rdata")
 #registerTwitterOAuth(cred)
 
 setup_twitter_oauth(consumerKey, consumerSecret, AccessToken, AccessTokenSecret)
+#type 1 : Yes : Direct Authentication
 
-#type 1 : Yes 
 search.string <- "#businessanalytics"
 #search.string <- "#marketinganalytics"
 no.of.tweets <- 100
@@ -37,28 +38,24 @@ tweets[1:10]
 #Another Topics
 #search.string <- "#indvseng"
 search.string <- "#asiacup"
-
 no.of.tweets <- 100
-
 tweets <- searchTwitter(search.string, n=no.of.tweets,lang="en")
 tweets[1:5]
 ?searchTwitter
-?searchTwitteR
 #My Tweets : will change if you use your own account
 homeTimeline(n=15)  #my tweets
-mentions(n=15)   # my tags
-mentions(n=5)
+mentions(n=5)   # my tags
 
 #for user - 
-(tweets = userTimeline("10rishav", n=10))
-userTimeline("drisha_sinha", n=5)
+(tweets = userTimeline("galactico_jyoti", n=10))
+userTimeline("galactico_jyoti", n=5)
 
 #------------------------------------
 ?userTimeline
 tweets = userTimeline("realDonaldTrump", n=100)
 #english
 tweets[1:5]
-n.tweet <- length(tweets)
+(n.tweet <- length(tweets))
 n.tweet
 tweets.df = twListToDF(tweets) 
 head(tweets.df)
@@ -77,7 +74,7 @@ word.df <- as.vector(tweets.df2)
 word.df
 emotion.df <- get_nrc_sentiment(word.df)
 emotion.df
-word.df[3]
+word.df[1]
 emotion.df2 <- cbind(tweets.df2, emotion.df) 
 head(emotion.df2)
 
