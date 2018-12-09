@@ -93,3 +93,12 @@ sqrt(mean((test$weight-pwt)^2))
 #clustering
 #group /segmentation 
 #kmeans : no of clusters : optimal no of clusters NbClust
+
+
+#Last Class - AR 
+#data to be transcation format Tnos and items in each Tr
+#libraries - arules, arulesviz
+#finding frequent itemset 
+#finding association rules - minconf, minsp, minlength and maxlength
+#interpret the rules
+#
