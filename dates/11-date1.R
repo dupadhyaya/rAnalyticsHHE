@@ -1,6 +1,5 @@
 #Data Format in R 
 #When we import data into R, dates and times are usually stored as character or factor by default due to symbols such as “-”, “:” and “/”
-
 cdate1='15/August/1947'
 cdate1
 cdate2 = c('15-Aug-1947', "26-Jan-1950")
