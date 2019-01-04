@@ -260,7 +260,6 @@ apply(a1,c(1,3), sum) #coy-location
 apply(a1,3, sum) #coywise
 sum(a1) #total
 
-
 #DataFrame----
 #create Vectors to be combined into DF
 (rollno = 1:30)

@@ -1,4 +1,5 @@
-
+#Factors
+#categories without (eg Gender) Order or with (eg Grades) Orders
 
 (grades = sample(c(LETTERS[1:4]), size=30, replace=T, prob=c(.4,.2,.3,.1 )))
 summary(grades)
