@@ -11,7 +11,6 @@ library(RCurl)
 library(XML)
 
 
-
 #How to use strsplit
 strsplit('IIT-Gawahati', "-")
 strsplit('IIT Gawahati', " ")

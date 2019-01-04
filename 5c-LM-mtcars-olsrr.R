@@ -9,3 +9,4 @@ plot(k)
 k
 summary(lm(mpg ~ wt, data=mtcars))
 summary(lm(mpg ~ wt + hp + qsec, data=mtcars))
+

@@ -4,7 +4,6 @@
 library(wordcloud2)
 
 ?wordcloud2
-
 df = data.frame(word=c('mdi','iim','imt'),freq=c(20,23,15))
 df
 wordcloud2(df)

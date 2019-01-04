@@ -5,6 +5,7 @@
 #graphs - bar, multiple line, pie, box, corrgram
 # predict weight for certain height
 
+
 head(women)
 dim(women)
 fit = lm(weight ~ height,data = women)

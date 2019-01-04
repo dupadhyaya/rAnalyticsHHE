@@ -93,6 +93,7 @@ mtcars %>% group_by(am, gear) %>% summarise_all(mean)
 mtcars %>% group_by(am, gear) %>% summarise_all(c("min", "max"))
 mtcars %>% group_by(am, gear) %>% summarise_all(funs(med = median))
 
+
 mtcars %>% group_by(cyl, am) %>% summarise(max(mpg), mean(hp))
 ?mtcars
 #without Group

@@ -7,6 +7,7 @@
 # RCurl and XML packages to download and parse web pages
 # RColorBrewer for color palettes
 
+
 library(wordcloud)
 library(RColorBrewer)
 library(SnowballC)

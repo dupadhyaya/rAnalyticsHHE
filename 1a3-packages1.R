@@ -19,7 +19,6 @@ library(help=amap)
 #Help wrt a package
 help(package='amap')  #see on right side pane
 
-
 #Unload---
 install.packages('tm')
 

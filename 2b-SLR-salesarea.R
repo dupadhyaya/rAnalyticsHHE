@@ -3,6 +3,7 @@
 #Given data of area and sales, predict value for sales for specific areas eg : (1.5,2,3,4,5)
 #manual way of doing regression see online URL
 
+
 #Create/ Import Data-----
 #Method1 : creating data from Vectors
 #X -is area sqft Y-sales in 1000s units; Find relationship betn X & Y

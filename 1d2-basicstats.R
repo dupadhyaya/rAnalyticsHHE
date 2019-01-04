@@ -6,6 +6,7 @@ median(x)
 table(x)
 sort(table(x), decreasing=T)
 
+
 #mode
 library(modeest)
 mlv(x,method='shorth')

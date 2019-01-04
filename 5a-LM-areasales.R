@@ -62,4 +62,3 @@ cbind(ndata2, p2wt)
 ?predict
 
 
-

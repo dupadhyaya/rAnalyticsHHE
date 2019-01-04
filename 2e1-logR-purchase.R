@@ -1,6 +1,5 @@
 # Logistic Regression : Predict Purchase
 
-
 # Import the dataset
 df1 = read.csv('./data/logr2.csv')
 head(df1)

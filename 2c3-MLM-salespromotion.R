@@ -2,7 +2,6 @@
 #sales Qty vs price & promotion
 #Predict Sales Qty from Price and Promotion of the Product
 
-
 #Omni Store
 #creating data using Vector
 sales= c(4141,3842,3056,3519,4226, 4630,3507,3754, 5000,5120,4011, 5015,1916,675, 3636,3224,2295, 2730,2618,4421, 4113,3746, 3532, 3825,1096, 761,2088,820,2114, 1882,2159,1602,3354,2927)

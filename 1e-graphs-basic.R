@@ -1,6 +1,7 @@
 # Combined Plots
 #plot, histogram, pie, boxplot, linechart, correlation plot
 
+
 #plot
 women
 plot(women)

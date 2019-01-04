@@ -3,6 +3,7 @@ library(rpart)
 library(rpart.plot)
 library(forecast)
 
+
 library(gsheet)
 url='https://docs.google.com/spreadsheets/d/1PWWoMqE5o3ChwJbpexeeYkW6p4BHL9hubVb1fkKSBgA/edit#gid=1941519952'
 data = as.data.frame(gsheet2tbl(url))

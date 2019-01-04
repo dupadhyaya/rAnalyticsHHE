@@ -1,4 +1,5 @@
-#Day 4 - IIM Kashipur
+#Day 4 - IIM Revision
+
 
 
 (gender = sample(c('M','F'), size=3, replace=T))

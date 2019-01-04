@@ -7,6 +7,7 @@ write.csv(iris, "./data/iris.csv", row.names=F)
 read1 = read.csv(file="./data/iris.csv", header = TRUE,sep = ",")
 read1 = read.csv(file="./data/dhiraj.csv", header = TRUE,sep = ",")
 
+
 str(read1)
 class(read1)
 head(read1)

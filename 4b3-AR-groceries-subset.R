@@ -5,6 +5,7 @@ rules <- apriori(Groceries, parameter = list(support=.001, confidence=.7,   maxl
 rules
 #target='rules' # to mine for rules)
 
+
 inspect(sort(rules, by="confidence", decreasing = T)[1:5])
 
 #subset conditions

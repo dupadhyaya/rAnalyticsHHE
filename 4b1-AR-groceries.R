@@ -6,6 +6,7 @@ library(datasets)  # no need to install, just load it reqd for Groceries
 data('Groceries')
 Groceries
 
+
 #Structure of Groceries
 str(Groceries)
 Groceries

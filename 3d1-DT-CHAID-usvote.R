@@ -2,7 +2,6 @@
 # require(rsample) # for dataset and splitting also loads broom and tidyr
 #install.packages("CHAID", repos="http://R-Forge.R-project.org")
 library(CHAID)  #library for performing CHAID decision tree
-
 #Dataset
 data(USvote)  #from lib CHAID
 ?USvote
