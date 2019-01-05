@@ -3,9 +3,12 @@
 #control+enter when you are in the line to execute
 # Vectors-----
 c(2,4,6)
-seq(2,3,.5)
+?seq
+seq(2,10,.5)
 seq(by=.5, from=2,to=3)
 rep(1:3,times=4)
+rep(1:3,each=4)
+
 rep(c(3,6,7,2),each=4)
 rep(c(3,6,7,2), times=4)
 
@@ -13,7 +16,7 @@ rep(c(3,6,7,2), times=4)
 
 x=1:10   #create seq of nos from 1 to 10
 x
-(x1 <- 1:20)
+(x1 <- 1:20)  # brackets - assign & print
 
 (x1=1:30)
 (x2=c(1,2,13,4,5))
@@ -24,23 +27,29 @@ class(x3)
 (x3=letters[1:10])
 class(x3)
 LETTERS[1:26]
-(x3b = c('a',"Henry",4))
+(x3b = c('a',"Henry",4))#should not combine numeric and character
 class(x3b)
 
-(x4=c(T,FALSE,TRUE,T,F))
+(x4=c(T,FALSE,TRUE,T,F))  #logical
 class(x4)
 class(c(3,5))
-x5a = c(3,5.5)
+(x5a = c(3,5.5))
 class(x5a)
 as.integer(x5a)
 
-x5=c(3L,5L)
+(x5=c(3L,5L, 100L))
 class(x5)
 x5a = c(3,5)
 class(x5a)
 (x5b = c(1, 'a',T, 4L))
 class(x5b)
 #blank variable ?
+
+x=3.5677
+trunc(x)
+round(x)
+floor(x)
+ceiling(x)
 
 #access elements
 ?seq
@@ -53,9 +62,12 @@ seq(1,5,2)
 ls()  #variables in my environment
 x6
 length(x6)
+x6[1]; x6[21]
+
 x6[1:5]
 x6[10:20]
 x6[ seq(1,length(x6), 2)]
+x6
 x6[3]  # access 3rd element
 #[1] 4
 x6[c(2, 4)]     # access 2nd and 4th element
@@ -71,12 +83,20 @@ x6
 x6[x6 > 30]
 
 x6[x6 > 30 & x6 < 40]  # 31-39
-#or |
+x6[x6 != 30]
+#or | and is &  !
 length(x6)
+x6
 x6[-(length(x6)-1)]
+x2
 (x7 = c(x6, x2))
 
+#---- Day1------
+#course structure, expections, zoom, objectives, what we learn, github - myprofile, R, Rstudio, Git SVN config, Synch git, creating respositories, 
+# Rstudio, Menu, tabs, create R files in repository, save, executing, help, install library, dataset, vector as DS.. rep, seq, :, filter/ conditions for vector, tyypes of vectors, 
+# data types- nominal, ordinal, interal, ratio
 
+#------
 #modify
 x6
 set.seed(1234)

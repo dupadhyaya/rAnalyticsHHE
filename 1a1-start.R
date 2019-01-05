@@ -2,6 +2,7 @@
 # assign
 x1 = 3 #press control + enter to run the line
 x2 <- 3 # same 
+x3 < - 3  #incorrect
 #which is better
 x1
 x2
@@ -17,10 +18,11 @@ library()  # libraries currently loaded
 ?mean  #help
 help(mean)
 ??mean  #search through other sources
-x=0:10
+x=0:100000000
 x
-x <- c(0:10, 50)
+x <- c(0:10, 50,100,200)
 x
+mean(x)
 xm <- mean(x)
 xm
 mean(x, trim = 0.10)
@@ -46,3 +48,11 @@ methods(class='matrix')  #methods available for a class of object
 
 plot(10:100) #basic command to plot
 plot(women)
+
+
+#vector
+#how to run command
+#check datasets
+#install library
+#check which libraries available
+#.....
