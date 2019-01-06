@@ -92,9 +92,7 @@ x2
 (x7 = c(x6, x2))
 
 #---- Day1------
-#course structure, expections, zoom, objectives, what we learn, github - myprofile, R, Rstudio, Git SVN config, Synch git, creating respositories, 
-# Rstudio, Menu, tabs, create R files in repository, save, executing, help, install library, dataset, vector as DS.. rep, seq, :, filter/ conditions for vector, tyypes of vectors, 
-# data types- nominal, ordinal, interal, ratio
+
 
 #------
 #modify
