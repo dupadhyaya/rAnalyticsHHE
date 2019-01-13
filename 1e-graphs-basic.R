@@ -5,8 +5,18 @@
 #plot
 women
 plot(women)
+(x= seq(1,10))
+(x =c(1,2,3,4,5,6,7,8,9,10))
+y= seq(11,20)
+plot(x,y)
+
+plot(x=women$height, y=women$weight)
+plot(women)
+plot(mtcars)
+pairs(mtcars[,1:3])
 ?plot
-plot(women, type='p', pch=16, col='red')
+
+plot(women, type='p', pch=4, col='blue')
 plot(women, type='l')
 plot(women, type='b')
 plot(women, type='b', pch=18, lty=1, col=2, lwd=4)
@@ -22,11 +32,27 @@ mtcars$cyl
 plot(women)
 abline(lm(women$weight ~ women$height), col='red', lty=2, lwd=4)
 
-
+#
 #boxplot
+str(women)
 boxplot(women$height)
-abline(h=c(58, 62,65,68,72))
+summary(women$height)
 
+abline(h=c(58, 62,65,68,72))
+text(x=1.2, y=c(58, 62,65,68,72) ,c('Min','1Q', 'Median','Mean','3Q','Max'), col='red' )
+
+x= rnorm(100000, mean=40, sd=5)
+boxplot(x, notch=T)
+(sum1= as.vector(summary(x)))
+abline(h=sum1)
+text(x=1.3, y=sum1 ,c('Min','1Q', 'Median','Mean','3Q','Max'), col='red' )
+
+hist(x)
+range(x)
+hist(x, breaks=c(0,40,50,60,100))
+plot(density(x))
+
+?hist
 #draw lines on plot for number summary
 summary(women)
 quantile(women$height)

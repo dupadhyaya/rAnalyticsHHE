@@ -54,12 +54,14 @@ plot(fit, which=3)
 plot(fit, which=4)
 
 #Auto-Correlation----
+library(car)
 #Independence of residuals error terms. (Not dependent on previous values)
 durbinWatsonTest(fit)
 #pvalue < 0; Ho that there is no correlation (r2=0) is accepted
 
 #Outliers
 plot(fit, which=4)
+summary(fit)
 #potential outliers are highlighted 1, 14, 15 row
 women[c(1,14,15),]
 

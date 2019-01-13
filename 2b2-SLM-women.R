@@ -14,6 +14,7 @@ cor(women$height, women$weight)
 0.995^2 # also equal R^2 value in this case (Simple Linear Regression)
 
 plot(x=women$height, y=women$weight, type='b')
+#lm( y ~ x , data)
 abline(lm(weight ~ height, data=women), col='red')
 names(women)  #x- IV, y -DV
 fit1 = lm(weight ~ height, data=women)  # creating a model
@@ -22,6 +23,7 @@ summary(fit1)  #summary of the Model
 #Ho: (F Test) : No relationship between Y and any X
 #Ha:  There is relationship between Y and at least one X
 # p < 0.05 Reject Ho in favour of Ha
+#linear relationship between X & Y axist
 
 attributes(fit1)  #output of model
 
