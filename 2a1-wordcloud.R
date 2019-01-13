@@ -4,7 +4,7 @@
 library(wordcloud2)
 
 #eg1
-df = data.frame(word=c('mdi','iim','imt','fms'),freq=c(20,23,15, 30))
+df = data.frame(word=factor(c('mdi','iim','imt','fms')),freq=c(20,23,105, 30))
 df
 wordcloud2(df)
 
@@ -35,3 +35,5 @@ df3 = demoFreq[ sample(1:nrow(demoFreq), size=10, replace=T), ]
 df3
 wordcloud2(df3)
 df3=fix(df3)
+df3
+wordcloud2(df3)

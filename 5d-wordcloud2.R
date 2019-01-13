@@ -31,3 +31,17 @@ head(demoFreq)
 ?wordcloud2
 # Change the shape using your image
 wordcloud2(demoFreq, figPath = "india.jpg", size = 1.5, color = "skyblue", backgroundColor="black")
+
+
+
+#myeg-----
+word = factor(c('Assets', 'Liabilities', 'Expenses', 'CashFlow', 'BottomLine','ProfitandLoss', 'Strategy', 'Planning', 'Forecast','Business'))
+length(word)
+(freq= c(27,35,32,31,33,24,26,27,28,29))
+#freq = as.integer(runif(length(word), 50,100))
+(df2 = data.frame(word, freq))
+row.names(df2) = word
+
+head(df2)
+wordcloud2(df2)
+wordcloud2(df2, color = ifelse(df2[, 2] > 30, 'red', 'skyblue'))
