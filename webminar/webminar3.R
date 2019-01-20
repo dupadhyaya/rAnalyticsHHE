@@ -1,4 +1,4 @@
-#webminar 3 - 20 Jan 2019
+#webminar 3 -  Jan 2019
 #Data Creation, Summarisation and Visualisation
 library(dplyr)
 library(ggplot2)
