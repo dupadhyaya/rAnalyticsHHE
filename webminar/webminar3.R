@@ -60,6 +60,7 @@ df %>% group_by(productID) %>% summarise(n=n(), mean(sales))
 df %>% group_by(productID) %>% summarise(meanSales = mean(sales), maxSales= max(sales), minSales= min(sales), sdSales = sd(sales)) -> rep4
 rep4
 write.csv(rep4, './data/rep4.csv')
+df %>% group_by(month) %>% summarise_each(funs(min, max), sales)
 
 
 #rep4b-----
@@ -181,3 +182,21 @@ trunc(rowMeans(DFwide[,-1]))
 #read/write to csv, read from google sheet
 #boxplot, fivenum, barplot, pie
 #ggplot - barplot, boxplot
+
+#split
+
+out = split(df , df$cat)
+out
+out$C1
+sapply( out , function(x) mean( x$sales ) )
+df %>% group_by(cat) %>% summarise(mean(sales))
+
+unsplit(out, df$cat)
+
+out2 = split.data.frame(df, df$month)
+out2$Jan
+sapply(out2, function(x) mean( x$sales ))
+sapply(out2, mean )
+
+#suggestion
+#dplyr, timeseries, regression, correlation
