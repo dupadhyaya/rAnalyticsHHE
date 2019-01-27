@@ -105,6 +105,8 @@ summary(trainData$admit); summary(testData$admit)
 #trainData & testData
 log1 = glm(admit ~ gre + gpa + rank, data=trainData, family='binomial')
 summary(log1)
+
+car::vif(log1)
 #we will use all variables 
 #predict on test set 
 (testData$predictNew = predict(log1, newdata = testData, type='response'))
@@ -120,8 +122,12 @@ caret::confusionMatrix(testData2$admit, testData2$predictClass2)
 
 head(testData2)
 
-#now construct a model with train and then test on testdata
+misClassError(testData2$admit, testData2$predictNew, threshold = optCutOff)
+plotROC(testData2$admit, testData2$predictNew)
+Concordance(testData2$admit, testData2$predictNew)
 
+#now construct a model with train and then test on testdata
+#http://r-statistics.co/Logistic-Regression-With-R.html
 #logistic Regression
 
 
