@@ -107,12 +107,19 @@ log1 = glm(admit ~ gre + gpa + rank, data=trainData, family='binomial')
 summary(log1)
 #we will use all variables 
 #predict on test set 
-(predictNew = predict(log1, newdata = testData, type='response'))
-testData2 = cbind(testData, predictNew, predictClass = factor(ifelse(predictNew < .5, 0, 1)))
-head(testData2)
-caret::confusionMatrix(testData2$admit, testData2$predictClass)
+(testData$predictNew = predict(log1, newdata = testData, type='response'))
 
+library(InformationValue) #finds optimal cutoff values
+(optCutOff <- optimalCutoff(testData$admit, testData$predictNew)[1] )
 str(testData)
+
+#find class with optimal & .5 cutoff value
+testData2 = cbind(testData, predictClass1 = factor(ifelse(testData$predictNew < optCutOff, 0, 1)) , predictClass2 = factor(ifelse(testData$predictNew < .5, 0, 1)))
+caret::confusionMatrix(testData2$admit, testData2$predictClass1)  #better
+caret::confusionMatrix(testData2$admit, testData2$predictClass2)
+
+head(testData2)
+
 #now construct a model with train and then test on testdata
 
 #logistic Regression
@@ -128,8 +135,5 @@ confusionMatrix(data$admit, prob, threshold = .7)
 
 confusionMatrix(data$admit, prob, threshold = .2)
 
-##divide data set into Train and Test Set
-input <- mtcars[,c("am","cyl","hp","wt")]
-am.data = glm(formula = am ~ cyl + hp + wt, data = input, family = binomial)
 
 print(summary(am.data))
