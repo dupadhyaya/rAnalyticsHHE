@@ -39,6 +39,7 @@ coef(fit1)
 range(women$height)
 (Y = -87 + 3.4 * 58)
 (Y = -87 + 3.4 * 61.5)
+
 (Y = -87 + 3.4 * 72)
 range(women$height)
 women

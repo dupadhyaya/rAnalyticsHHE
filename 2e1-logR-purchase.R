@@ -1,8 +1,8 @@
 # Logistic Regression : Predict Purchase
 
 # Import the dataset
-df1 = read.csv('./data/logr2.csv')
-head(df1)
+#df1 = read.csv('./data/logr2.csv')
+#head(df1)
 
 url="https://docs.google.com/spreadsheets/d/1Md_ro2t3M7nA9JMH1DsE12jfeX7qq-UPw6p8WQd6A2Y/edit#gid=120271978"
 library(gsheet)
@@ -64,5 +64,6 @@ library(caret)
 caret::confusionMatrix(cm)
 
 names(dataset)
+#predict binary classification
 
 
