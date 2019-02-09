@@ -10,7 +10,7 @@ students = data.frame(gender, play)
 head(students)  
 (t1=table(students$gender, students$play))
 prop.table(t1)
-
+addmargins(t1)  # 50% of each category play and don't play
 dtree1 = rpart(play ~ gender, data=students, control = list(cp=-1, minsplit=5))
 dtree1
 rpart.plot(dtree1)
