@@ -23,7 +23,12 @@ prunetree
 #here we have selected a different value to simplify the tree
 mean(data$Sales)
 prunetree
-rpart.plot(prunetree, nn=T)
+str(data)
+library(dplyr)
+data %>% filter(ShelveLoc == 'Good') %>% summarise(mean(Sales))
+mean(data[data$ShelveLoc == 'Good', 'Sales'], na.rm=T)
+
+rpart.plot(prunetree,  nn=T)
 #Interpretation
 #if ShelveLoc=Good, and Price >= 109.5, sales predicted is 9.2
 
@@ -32,6 +37,7 @@ rpart.plot(prunetree, nn=T, cex=.8, type=4)
 #read this document to improve the plot
 #https://cran.r-project.org/web/packages/rpart.plot/rpart.plot.pdf
 #http://www.milbo.org/rpart-plot/prp.pdf
+
 library(dplyr)
 #Predict for test value
 (testdata = sample_n(data,2))

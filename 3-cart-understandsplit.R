@@ -1,5 +1,6 @@
 #Understanding Splitting and selection of variables
 
+#install the libraries
 library(rpart)
 library(rpart.plot)
 #---
@@ -30,9 +31,15 @@ addmargins(prop.table(t2))
 
 dtree2 = rpart(play2 ~ gender2, data=students2, control = list(cp=-1, minsplit=5))
 dtree2
+rpart.plot(dtree2, extra=104, nn=T)
 rpart.plot(dtree2)
-rpart.plot(dtree2, extra=104)
+table(students2$play2)
+rpart.plot(dtree2, extra=104, cex=1)
 rpart.plot(dtree2, extra=104, yesno=2, left=F, xflip=T, yflip=T,faclen=3, cex=1.5)
+predict(dtree2, newdata = data.frame(gender2='M'), type='class')
+predict(dtree2, newdata = data.frame(gender2='M'), type='prob')
+
+
 #explore below document
 #https://cran.r-project.org/web/packages/rpart.plot/rpart.plot.pdf
 prop.table(t2,1) #40/60

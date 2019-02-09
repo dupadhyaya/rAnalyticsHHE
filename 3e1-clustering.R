@@ -3,7 +3,7 @@
 library(cluster)
 library(fpc)
 library(dplyr)
-
+#kmeans -
 #sample Data
 marks = data.frame(sub1=c(0,1,2,4,5,4,6,7),sub2=c(0,1,2,3,3,4,5,5))
 marks
@@ -42,7 +42,10 @@ km23  #within cluster sum of sq by cluster
 # should be high for good clustering
 
 #plots
+plot(marks)
 plot(marks,col=km23$cluster,cex=1.5)
+abline(v=c(5.2, 0, 1.5), h=c(4,0,1.5))
+km23$centers
 points(km23$center,col=1:2,pch=8,cex=2)  #center point
 #see the change in columns : use PCA
 plotcluster(marks, km23$cluster)
@@ -57,6 +60,7 @@ library(fpc)
 
 data(iris)
 head(iris)
+dim(iris)
 data = iris[, -5] # without known classification 
 # Kmeans cluster analysis
 iriskm1 =  kmeans(data, centers=3)
@@ -109,6 +113,7 @@ head(irisclusters)
 library(dplyr)
 iris %>% group_by(Species) %>% summarise_all(mean)
 kiris$centers
+
 #setsoa - Cluster1, etc
 #grouping may not be perfect, but close to orginal classification
 #this way we can do Customer, Product Segmentation
@@ -143,3 +148,4 @@ plot(students1$marks50, students1$marks500, col=skm1$cluster)
 plot(students1$marks50, students1$marks500, col=skm2$cluster)
 #better cluster in 2nd case
 par(mfrow=c(1,1))
+
