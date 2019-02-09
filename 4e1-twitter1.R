@@ -10,10 +10,14 @@ download.file(url="http://curl.haxx.se/ca/cacert.pem",destfile="cacert.pem")
 
 #https://apps.twitter.com/
 #different for each account
-consumerKey="uRDuync3BziwQnor1MZFBKp0x"
-consumerSecret="t8QPLr7RKpAg4qa7vth1SBsDvoPKawwwdEhNRjdpY0mfMMdRnV"
-AccessToken="14366551-Fga25zWM1YefkTb2TZYxsrx2LVVSsK0uSpF08sugW"
-AccessTokenSecret="3ap8BZNVoBhE2GaMGLfuvuPF2OrHzM3MhGuPm96p3k6Cz"
+# consumerKey="uRDuync3BziwQnor1MZFBKp0x"
+# consumerSecret="t8QPLr7RKpAg4qa7vth1SBsDvoPKawwwdEhNRjdpY0mfMMdRnV"
+# AccessToken="14366551-Fga25zWM1YefkTb2TZYxsrx2LVVSsK0uSpF08sugW"
+# AccessTokenSecret="3ap8BZNVoBhE2GaMGLfuvuPF2OrHzM3MhGuPm96p3k6Cz"
+consumerKey='uRDuync3BziwQnor1MZFBKp0x'
+consumerSecret='t8QPLr7RKpAg4qa7vth1SBsDvoPKawwwdEhNRjdpY0mfMMdRnV'
+AccessToken='14366551-Fga25zWM1YefkTb2TZYxsrx2LVVSsK0uSpF08sugW'
+AccessTokenSecret='3ap8BZNVoBhE2GaMGLfuvuPF2OrHzM3MhGuPm96p3k6Cz'
 
 #Common for all accounts except the keys
 
@@ -52,11 +56,13 @@ mentions(n=5)
 
 #for user - 
 (tweets = userTimeline("riddheishad", n=10))
-userTimeline("PrabhanshRai", n=5)
+userTimeline("rahulg_IITK", n=5)
 
 #------------------------------------
 ?userTimeline
 tweets = userTimeline("realDonaldTrump", n=100)
+tweets = userTimeline("imVkohli", n=100)
+#where he has been tagged also.#mentions(n=15)
 #english
 tweets[1:5]
 n.tweet <- length(tweets)
@@ -78,9 +84,12 @@ word.df <- as.vector(tweets.df2)
 emotion.df <- get_nrc_sentiment(word.df)
 emotion.df2 <- cbind(tweets.df2, emotion.df) 
 head(emotion.df2)
-
+emotion.df2
+word.df
 #-----
 sent.value <- get_sentiment(word.df)
+sent.value
+tweets[c(16,62)]
 most.positive <- word.df[sent.value == max(sent.value)]
 most.positive
 most.negative<- word.df[sent.value <= min(sent.value)] 
@@ -104,3 +113,10 @@ head(category_senti2)
 #----
 table(category_senti)
 tweets[13]
+
+
+#Text Mining / Twitter Analysis
+#Finding out sentiments
+#looking for keywords used in the tweets
+#wordcloud for these words
+#
