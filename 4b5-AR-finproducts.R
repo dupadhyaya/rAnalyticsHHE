@@ -5,6 +5,7 @@ library("arules")
 set.seed(101)
 transactionID = sample(1:500, 1000, replace=T)
 transactionID
+table(transactionID)
 
 finproducts = c('Mutual Funds', 'NPS', 'Savings Account', 'PPF', 'FD', 'Bonds', 'Stocks', 'General Insurance', 'NRI Banking', 'Car Insurance', 'Debit Card', 'Credit Card', 'Mobile Banking')
 length(finproducts)
@@ -12,6 +13,9 @@ item = sample(finproducts,1000, replace=T)
 item
 orders = data.frame(transactionID, item)
 head(orders)
+
+library(dplyr)
+orders %>% group_by(transactionID) %>% tally() %>% as.data.frame()
 
 write.csv(orders, "./data/fintransactions.csv")
 
@@ -41,7 +45,7 @@ abline(h=0.15)
 #Create Rules
 rules1 <- arules::apriori(ordertrans, parameter = list(supp = 0.005, conf = 0.5))
 rules1
-write.csv(inspect(rules1, 'rules.csv'))
+write.csv(inspect(rules1, './data/rules.csv'))
 inspect(rules1[1:5])
 
 rules1L = sort (rules1, by="lift", decreasing=TRUE)

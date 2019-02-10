@@ -13,7 +13,7 @@ length(sales)
 (ysales = ts(sales, frequency = 1))
 
 (yearlysales = ts(sales, start=c(1980), frequency=1))
-
+yearlysales
 (yearlysales1 = ts(sales, start=c(1980,3), frequency=1)) 
 # 3rd yr from 1980
 plot(yearlysales)
@@ -25,8 +25,6 @@ methods(class=ts)
 yearlysales1
 (w1= window(yearlysales1, start=1983, end=1990))
 plot(w1)
-
-
 
 #Quarterly -----
 12/4  # freq=4
@@ -51,7 +49,7 @@ length(monsales1)
 #see subset of sales data : May 2000 to Aug 2001
 window(monsales1, start=c(2000, 5), end=c(2001, 8))
 
-#Monthly TS
+#Daily TS
 sales2 = ceiling(rnorm(365, mean=100, sd=10))
 sales2
 #YYYY,day

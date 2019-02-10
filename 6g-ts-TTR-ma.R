@@ -6,6 +6,7 @@ library(forecast)
 #https://www.rdocumentation.org/packages/forecast/versions/8.4/topics/ma
 head(wineind)
 ?wineind
+wineind
 class(wineind)
 str(wineind)
 plot(wineind)

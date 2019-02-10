@@ -23,11 +23,12 @@ class(date3)
 #%B: month (January), %b: abbreviated month (Jan) 
 #%d: 2-digit day of the month (13)
 #%A: weekday (Wednesday), %a: abbreviated weekday (Wed)
-
+#%d :  date in number
 #convert cdate1 cdate2 to date formats
 cdate1 #"15/August/1947
 date1 = as.Date(cdate1, format='%d/%B/%Y')
 date1
+class(date1)
 #
 cdate2 #"15-Aug-1947" "26-Jan-1950"
 date2 = as.Date(cdate2, format='%d-%b-%Y')
@@ -127,3 +128,10 @@ dob = "14/08/1994"
 dob_date = as.Date(dob,format='%d/%m/%Y')
 dob_date
 as.character(dob_date, format="%A")
+
+#get all staturday and sundays for year
+sdate = '2019-01-01'
+sdate1 = as.Date(sdate)
+sdate2 = sdate1 + 0:364
+as.character(sdate2, format='%A')
+
