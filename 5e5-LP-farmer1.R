@@ -49,11 +49,16 @@ print(lprecF1)  #see the model
 #35x + 40y <= 10000
 add.constraint(lprecF1, c(5,10), "<=", 1000)
 lprecF1
-delete.constraint(lprecF1, 3)
+#delete.constraint(lprecF1, 3)
 solve(lprecF1)   #if 0  then solution found
 get.objective(lprecF1) # profit achieved
 get.variables(lprecF1)  #how much of each crop A & B
+get.constraints(lprecF1) #constraints of budget & labor used
+#how much of funds, labour and water used
 
+#deleter water constraint - water
+delete.constraint(lprecF1, 3)
+lprecF1
 #setting integer value
 set.type(lprecF1, c(1,2), type = c("integer"))
 lprecF1

@@ -43,41 +43,56 @@ inspect (rulesl[1:5])
 
 #How To Control The Number Of Rules in Output ?
 #maxlen, minlen, supp, conf
-rules2 = apriori (Groceries, parameter = list (supp = 0.01, conf = 0.5, minlen=2, maxlen=3)) 
+rules2 = apriori (Groceries, parameter = list (supp = 0.001, conf = 0.5, minlen=2, maxlen=3)) 
+rules2  #no of rules
 inspect(rules2[1:15])
 
-#Find what factors influenced an event ‘X’
-rules3 = apriori (data=Groceries, parameter=list (supp=0.002,conf = 0.8), appearance = list (default="lhs",rhs="whole milk"), control = list (verbose=F))
-inspect(rules3[1:5])
-inspect(rules3)
-
-#Find out what events were influenced by a given event
+#Find out what events were influenced by a given event - from already created rules
 subset1 = subset(rules2, subset=rhs %in% "whole milk")
-inspect(subset1)
+inspect(subset1) # rhs has milk
 subset1 = subset(rules2, subset=rhs %in% 'bottled beer' )
-inspect(subset1)
-inspect(rules2)
+inspect(subset1) #rhs has beer
+#inspect(rules2)
 subset2 = subset(rules2, subset=lhs %ain% c('baking powder','soda') )
-inspect(subset2)
+inspect(subset2) # all items  %ain%
 subset2a = subset(rules2, subset=lhs %in% c('baking powder','soda') )
-inspect(subset2a)
+inspect(subset2a) # any of the items %in%
 
-
-
-
+#RHS, Confidence, sort by Lift
 subset3 = subset(rules2, subset=rhs %in% 'bottled beer' & confidence > .7, by = 'lift', decreasing = T)
-inspect(subset3)
+inspect(subset3)  #sometimes there may be no rules, change few parameters
 subset4 = subset(rules2, subset=lhs %in% 'bottled beer' & rhs %in% 'whole milk' )
 inspect(subset4)
 
 #Visualizing The Rules -----
-plot(subset1[1:10]) 
-plot(subset1[1:10], measure=c("support", "lift"), shading="confidence")
+subset1
+plot(subset1[1:2]) 
+plot(subset1[1:2], measure=c("support", "lift"), shading="confidence")
+#change the axis
 
 #
 
 
+#Find what factors influenced an event ‘X’ - create fresh Rules
+rules3 = apriori (data=Groceries, parameter=list (supp=0.002,conf = 0.8), appearance = list (default="lhs",rhs="whole milk"), control = list (verbose=F))
+inspect(rules3[1:5])
+inspect(rules3)
+
+
+#rhs as it is, lhs to have tropical fruit or herbs
 rules4 = apriori (data=Groceries, parameter=list (supp=0.001,conf = 0.4), appearance = list (default="rhs",lhs=c('tropical fruit','herbs')), control = list (verbose=F))
 inspect(rules4[1:5])
 inspect(rules4)
+plot(subset4) 
 
+
+#legend to filter
+#legend to condition commands 
+# lhs - means left hand side, or antecendent
+# rhs - mean right hand side, or consequent
+# items - items, that make up itemsets
+# %in% - matches any
+# %ain% - matches all
+# %pin% - matches partially
+# default - no restrictions applied
+# & - additional restrictions on lift, confidence etc.

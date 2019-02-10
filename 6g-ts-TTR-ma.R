@@ -1,5 +1,5 @@
 #Time Series - SMA
-library(TTR)
+#packages used - TTR and forecast
 
 library(forecast)
 #MA
@@ -9,26 +9,27 @@ head(wineind)
 class(wineind)
 str(wineind)
 plot(wineind)
-sm <- ma(wineind,order=3)
-?ma
-sm
+sma3 <- ma(wineind,order=3)
+?ma  #function of forecast
+sma3
 head(wineind,n=3)
-head(sm, n=3)
+head(sma3, n=3)
 sum(head(wineind,n=3)) / 3
 
-lines(sm,col="red")
-smF <- ma(wineind,order=3, centre=F)
-head(smF)
+lines(sma3,col="red")
+sma3F <- ma(wineind,order=3, centre=F)
+head(sma3F)
 
 
 #centered
-x = ts(runif(25,50,80))
-x
+(v1 = runif(25,50,80))
+(x = ts(v1)) #convert to Time Series Objects without any date
 forecast::ma(x, order=2, centre=T)
 
 plot(wineind)
-csm <- ma(wineind,order=12, centre=T)
-lines(csm,col="red")
+csma12 <- ma(wineind,order=12, centre=T)
+csma12
+lines(csma12,col="red")
 
 
 
