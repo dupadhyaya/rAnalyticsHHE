@@ -3,7 +3,7 @@
 library(arules)  #install first
 library(arulesViz) #install first
 library(datasets)  # no need to install, just load it reqd for Groceries
-data('Groceries')
+data('Groceries') #different format - transaction format
 Groceries
 
 
@@ -14,8 +14,10 @@ arules::LIST(Groceries[1:6])  #another view
 arules::inspect(Groceries[1:5])
 
 #Find Frequent Itemset
-frequentItems = eclat (Groceries, parameter = list(supp = 0.01, minlen= 3, maxlen = 5)) 
-inspect(frequentItems[1:10])
+#.01 * 9835; A + B + C = 3 items, A + B + C + D : 4 items
+frequentItems = eclat (Groceries, parameter = list(supp = 0.01, minlen= 2, maxlen = 5))
+#frequentItems = eclat (Groceries, parameter = list(minlen= 3))
+inspect(frequentItems[1:88])
 frequentItems
 inspect(frequentItems[10:100])
 #inspect(frequentItems[100:122])
@@ -25,7 +27,7 @@ inspect(sort (frequentItems, by="count", decreasing=F)[1:25])
 
 #Support is : support(A&B) = n(A&B)/ N
 #Plot the Frequency Plot
-itemFrequencyPlot(Groceries,topN = 15,type="absolute")
+itemFrequencyPlot(Groceries, topN = 15,type="absolute")
 itemFrequencyPlot(Groceries, topN = 10, type='relative')
 abline(h=0.15)
 
@@ -33,7 +35,7 @@ abline(h=0.15)
 #parameters are min filter conditions 
 rules = apriori(Groceries, parameter = list(supp = 0.005, conf = 0.5, minlen=2))
 rules
-inspect (rules[1:5])
+inspect (rules[1:15])
 #Sort Rules by confidence, lift and see the data
 rulesc <- sort (rules, by="confidence", decreasing=TRUE)
 inspect(rulesc[1:5])
@@ -45,6 +47,7 @@ inspect (rulesl[1:5])
 #maxlen, minlen, supp, conf
 rules2 = apriori (Groceries, parameter = list (supp = 0.001, conf = 0.5, minlen=2, maxlen=3)) 
 rules2  #no of rules
+rules #earlier rules
 inspect(rules2[1:15])
 
 #Find out what events were influenced by a given event - from already created rules
@@ -59,22 +62,28 @@ subset2a = subset(rules2, subset=lhs %in% c('baking powder','soda') )
 inspect(subset2a) # any of the items %in%
 
 #RHS, Confidence, sort by Lift
-subset3 = subset(rules2, subset=rhs %in% 'bottled beer' & confidence > .7, by = 'lift', decreasing = T)
+subset3 = subset(rules2, subset=rhs %in% 'bottled beer' & confidence > .5, by = 'lift', decreasing = T)
 inspect(subset3)  #sometimes there may be no rules, change few parameters
 subset4 = subset(rules2, subset=lhs %in% 'bottled beer' & rhs %in% 'whole milk' )
 inspect(subset4)
+subset4b = subset(rules2, subset=rhs %in% 'bottled beer'  )
+inspect(subset4b) #no such rules
 
+library(arulesViz) #install first
+#https://cran.r-project.org/web/packages/arulesViz/vignettes/arulesViz.pdf
 #Visualizing The Rules -----
 subset1
+rules2
+inspect(subset2)
 plot(subset1[1:2]) 
 plot(subset1[1:2], measure=c("support", "lift"), shading="confidence")
 #change the axis
-
+plot(rules2[1:100], measure=c("support", "lift"), shading="confidence")
 #
 
 
 #Find what factors influenced an event ‘X’ - create fresh Rules
-rules3 = apriori (data=Groceries, parameter=list (supp=0.002,conf = 0.8), appearance = list (default="lhs",rhs="whole milk"), control = list (verbose=F))
+rules3 = apriori (data=Groceries, parameter=list (supp=0.002,conf = 0.7), appearance = list (default="lhs",rhs="whole milk"), control = list (verbose=F))
 inspect(rules3[1:5])
 inspect(rules3)
 
@@ -96,3 +105,16 @@ plot(subset4)
 # %pin% - matches partially
 # default - no restrictions applied
 # & - additional restrictions on lift, confidence etc.
+
+
+#summarise Association Rules / Market Basket analysis
+#load libraries - arules, arulesViz
+#load dataset in Transaction Format eg Groceries
+#Find frequentitems set
+#Find rules as per parameters
+#Parameters - min support, min confidence, minlen, maxlen
+#sort - confidence, lift, count, support
+#subset of rules - lhs, rhs, confidence, all, any item
+#plot of the rules 
+#find interesting rules  - high lift, high confidence
+#put strategy in place - location, bundle, discounts, advertisement

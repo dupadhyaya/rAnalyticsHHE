@@ -20,23 +20,23 @@ twitter_token <- create_token(
   consumer_key = "0glwhLXXAahrusA3Dxvhou82M",
   consumer_secret = "bItULC8KINiNFIWcMBDekO6IztIoHeQ8yD6STqxbvIBxRCePZx")
 
-rt1 <- search_tweets("data science", n = 100, token = twitter_token)
+rt1 <- search_tweets("business analytics", n = 100, token = twitter_token)
 rt1
 rtweet::write_as_csv(rt1, 'E:/data/tweets1.csv')
 
 get_followers(user= 'dupadhyaya', n = 100, page = "-1", parse = TRUE, token =twitter_token)
 get_friends(user= 'dupadhyaya', page = "-1", parse = TRUE, token =twitter_token)
-dut = get_timeline(user= 'dupadhyaya', n = 200, max_id = NULL, home = FALSE, parse = TRUE,check = TRUE, usr = TRUE, token =twitter_token )
-
-users_data(dut)
-dut[1,]$source
+duT = get_timeline(user= 'dupadhyaya', n = 200, max_id = NULL, home = FALSE, parse = TRUE,check = TRUE, usr = TRUE, token =twitter_token )
+duT
+users_data(duT)
+duT[1,]$source
 
 # lookup vector of 1 or more user_id or screen_name
-users <- c("potus", "hillaryclinton", "realdonaldtrump",
-           "fivethirtyeight", "cnn", "espn", "twitter")
+users = c('rahulg_IITK', 'Saurabh84522682', 'Dharmes13753606','dupadhyaya', 'narendramodi', 'imvirat', 'iimahmedabad', 'rahulgandhi')
 
 usr_df <- lookup_users(users)
 usr_df
+as.data.frame(usr_df)
 # view tweet data for these users via tweets_data()
 tweets_data(usr_df)
 
@@ -57,10 +57,9 @@ head(su)
 users_with_tweets(su)
 
 #get_collections-----
-cnc = get_collections(user ='iamvirat', status_id = NULL, n = 200, cursor = NULL,
-                parse = TRUE, token = NULL)
+viratT = get_collections(user ='iamvirat', status_id = NULL, n = 200, cursor = NULL, parse = TRUE, token = NULL)
 
-str(cnc)
+str(viratT)
 personid='dupadhyaya'
 personid='imVkohli'
 
