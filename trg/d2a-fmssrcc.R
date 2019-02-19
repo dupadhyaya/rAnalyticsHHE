@@ -44,21 +44,24 @@ url_gsheet = "https://docs.google.com/spreadsheets/d/1QogGSuEab5SZyZIw1Q8h-0yrBN
 df_gsheet = as.data.frame(gsheet2tbl(url_gsheet))
 head(df_gsheet)
 
-url2 = "https://docs.google.com/spreadsheets/d/1Ay0QQyCuWAtiNaPqWDBznpPZNTX92Jv9fYUDx4usTZ0/edit#gid=0"
-newdata = as.data.frame(gsheet2tbl(url2))
-head(newdata)
+#graphs
 
-#Excel----
-#Create a excel file with data in 2 sheets
-# first row contains variable names
-#C:\Program Files\Java\jre1.8.0_191
-Sys.setenv(JAVA_HOME='C:\\Program Files\\Java\\jre1.8.0_191')
-#library(rjava)
-library(xlsx)
-df_excel1 = read.xlsx( "./data/myexcel.xlsx", 1)
-df_excel1
-# read in the worksheet named mysheet
-df_excel2a = read.xlsx("./data/myexcel.xlsx", sheetName = "bowlers")
-df_excel2a
-df_excel2b = read.xlsx( "./data/myexcel.xlsx", sheetIndex = 2)
-df_excel2b
+mtcars
+names(mtcars)
+table(mtcars$cyl)
+table(mtcars$cyl, mtcars$am)
+mtcars$mpg
+#continuous data - histogram, boxplot
+hist(mtcars$mpg)
+boxplot(mtcars$mpg, horizontal = T)
+boxplot( mpg ~ gear, data=mtcars, col=1:3)
+t1 = table(mtcars$gear)
+t1
+barplot(t1, col=1:3)
+students
+t2 = table(students$college)
+barplot(t2)
+t3 = table(students$gender)
+barplot(t3)
+title('This is bar plot', sub = 'Subtitle')
+pie(t3)

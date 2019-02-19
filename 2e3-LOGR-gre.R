@@ -11,6 +11,11 @@ inputData
 summary(inputData)
 #sd of all columns 
 sd(inputData$admit)
+sd(inputData[,1])
+sd(inputData[,2])
+sd(inputData[,3])
+sd(inputData[,4])
+
 for (i in 1:4) { print(sd(inputData[,i]))}
 #use apply functions
 sapply(inputData, sd)
@@ -22,9 +27,9 @@ sapply(inputData, quantile)
 
 str(inputData)
 data= inputData  # make a copy for futher analysis
-data$rank = factor(data$rank)
+data$rank = as.factor(data$rank)
 data$admit = factor(data$admit)
-
+str(data)
 str(data)
 ## 2way contingency table of cat outcome and predictors we want
 ## to make sure there are not 0 cells
@@ -36,6 +41,7 @@ prop.table(t1,2)
 ?prop.table
 #xtabs(~ gear + cyl + am , data=mtcars)
 #create Logistic Model
+head(data)
 mylogit = glm(admit ~ gre + gpa + rank, data = data, family = "binomial")
 
 summary(mylogit)
@@ -47,11 +53,12 @@ summary(mylogit)
 ## odds ratios only
 exp(coef(mylogit))
 library(dplyr)
+set.seed(1234)
 (ndata1 = sample_n(data, 3))
 (p1=predict(mylogit,newdata=ndata1, type=c("response")))
 
 #Predict admit for input data
-(ndata2 = data.frame(gre=c(600, 650), gpa=c(2,3), rank=factor(c(1,2))))
+(ndata2 = data.frame(gre=c(600, 700), gpa=c(2,3), rank=factor(c(1,1))))
 (p2= predict(mylogit,newdata=ndata2, type=c("response")))
 
 cbind(ndata1, p1, predict=ifelse(p1 < .5, 0, 1))

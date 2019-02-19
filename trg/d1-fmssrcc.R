@@ -121,7 +121,7 @@ max(m3)
 min(m3)
 range(m3)
 
-#data.frame
+#data.frame----
 n=30
 rollno = 1:30
 (rollno = paste('F',1:30,sep='-'))
@@ -157,7 +157,6 @@ students = data.frame(rollno, sname, gender, college, marks1, marks2)
 class(students)
 students
 head(students)
-students$
 students$rollno
 students[,5:6]
 students[,c(2,5:6)]
@@ -195,12 +194,27 @@ head(students3)
 head(students)
 library(dplyr)
 head(students)
+#querf - avg marks of females from SRCC
 students[students$marks1 > 60 , ]
 students[students$gender =='F' , ]
-students[students$gender =='F' | students$college == 'SRCC' , ]
+students[students$gender =='F' & students$college == 'SRCC' , ]
 #highest from all college
+#using dplyr
 students %>% filter(gender=='M' & marks1 > 60)
+#all students with gender = M, marks1> 60
+
 students %>% group_by(gender) %>% summarise(mean(marks1), mean(marks2))
+students %>% tally()
+students %>% group_by(gender, college) %>% summarise(countTotal=n(), mean(marks1), max(marks2)) 
+students %>% mutate(totalMarks = marks1 + 1.2 * marks2) %>% arrange(-totalMarks) %>% head(n=2)
+students %>% mutate(totalMarks = marks1 + 1.2 * marks2) %>% filter(totalMarks == max(totalMarks))
+head(students)
+#
+students %>% slice(seq(1,30,2))  #every alternate row
+students %>% sample_n(5)  #random 5 rows
+students %>% sample_frac(.2)  #random 20%
+
 students %>% group_by(college) %>% summarise(max(marks1), max(marks2))
 students %>% filter(college=='FMS') %>% select(marks1, marks2)
 
+students

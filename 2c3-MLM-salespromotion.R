@@ -44,26 +44,26 @@ summary(fit2)
 #price  : -53 , pvalue = 9.2e-09 < 0.05 *** : Significant
 #keeping promotion constant, if price is increased by 1 unit, salesqty decreases by 53 units
 #promotion  : +3.6 , pvalue = 9.82e-06 < 0.05 ***: Significant
-#keeping price constant, if promotion is increased by 1 unit, salesqty increases by 53 units
+#keeping price constant, if promotion is increased by 1 unit, salesqty increases by 3 units
 
-fitted(fit2)
-omni$sales
-residuals(fit2)
+fitted(fit2)#predicted sales values for input/ actual price and promtion
+omni$sales #actual sales
+residuals(fit2) #diff between predicted and actual sales
 summary(residuals(fit2))
 summary(fit2)
 #Predict SalesQty for new combination of Values----
 
 #create a dataframe of new sample values
 range(omni$price) ; range(omni$promotion)
-(ndata2 = data.frame(price=c(60,70), promotion=c(300,400)))
-p2sales = predict(fit2, newdata=ndata2)
+(ndata2 = data.frame(price=c(60,70,72), promotion=c(300,400,350)))
+(p2sales = predict(fit2, newdata=ndata2, type='response'))
 cbind(ndata2, p2sales)
-
+head(omni)
 #Assumptions
 par(mfrow=c(2,2))
 plot(fit2)
 par(mfrow=c(1,1))
-
+plot(fit2)
 plot(fit2,which=1)  # no pattern, equal variance
 plot(fit2,2)  # Residuals are normally distributed
 plot(fit2,3)  # No hetero-scedascity
@@ -72,6 +72,7 @@ omni[c(11,14,15),]
 
 fit3 = lm(sales ~ price + promotion, data=omni[-c(11,14,15),])
 plot(fit3,4)
+summary(fit2)
 summary(fit3)
 
 #End of Multiple Linear Regression
@@ -94,3 +95,13 @@ head(omni)
 cbind(omni, predict(fit2, newdata = data.frame(omni$price, omni$promotion)))
 cbind(omni, fitted(fit2))
 cbind(omni, fitted(fit2), omni$sales - fitted(fit2), residuals(fit2))
+
+
+#divided data into parts
+#training set  =70%
+#test set - 30%
+#
+head(women)
+nrow(women)
+library(dplyr)
+women %>% sample_frac(.7) -> train1
