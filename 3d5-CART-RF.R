@@ -95,7 +95,11 @@ rf1 = randomForest(survived ~ . , data=train2, importanct=TRUE, ntree =2000)
 importance(rf1) #sex is most significant
 varImpPlot(rf1)
 rf1
-#Out of Bag(OOB) error is the overall classification error in the above model : > 15%
+##Out of Bag(OOB) error is the overall classification error in the above model : > 15%
+plot(rf1)
+legend('topright', colnames(rf1$err.rate), col=1:3, fill=1:3)
+#he black line shows the overall error rate which falls below 20%. The red and green lines show the error rate for ‘died’ and ‘survived’ respectively. We can see that right now we’re much more successful predicting death than we are survival.
+
 
 #Predict
 predict_test2 = predict(rf1, newdata=test2, type='class')
@@ -103,3 +107,27 @@ confmatrix_test2 = table(test2$survived, predict_test2)
 confmatrix_test2
 accuracy_test2 = (confmatrix_test2[1,1] + confmatrix_test2[2,2]) / sum(confmatrix_test2)
 accuracy_test2  # 85%
+
+
+
+
+#------
+library(mice)
+summary(data1)
+data3 = data1
+set.seed(1234)
+names(data3)
+mice_mod <- mice(data3[, !names(data3) %in% c('survived')], method='rf') 
+mice_output <- complete(mice_mod)
+mice_output
+data3$age <-  mice_output$age
+summary(data3)
+
+
+#plot RF
+#https://stats.stackexchange.com/questions/41443/how-to-actually-plot-a-sample-tree-from-randomforestgettree
+devtools::install_github('araastat/reprtree')
+library(reprtree)
+reprtree:::plot.getTree(model)
+getTree(rf1, 1, labelVar=TRUE)
+rf1$forest$treemap
