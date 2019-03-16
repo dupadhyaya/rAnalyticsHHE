@@ -2,11 +2,14 @@
 mtcars
 nrow(mtcars)
 #train-70%, test-30%
-sample(x=1:32, size=.7 * 32)
+(myvalues = 1:32)
+selected = sample(x=myvalues, size=.7 * 32)
+length(selected)
+
 index = sample(x=1:nrow(mtcars), size=.7 * nrow(mtcars), replace=F)
 index
-mtcars[c(1,4),]
-mtcars[-c(1,4),]
+mtcars[c(1,4),]  #first & 4th row no
+mtcars[-c(1,4),] #exclude 1 & 4
 
 train= mtcars[index,]
 test= mtcars[-index,]
@@ -14,7 +17,20 @@ nrow(train)
 nrow(test)
 nrow(train) + nrow(test)
 
-
+#
+(rollnos = 1:50)
+rollnos[rollnos > 20]
+rollnos[10:15]
+set.seed(1234)
+(select = sample(x=rollnos, size=.75 * length(rollnos)))
+length(select)
+#
+#40 students - M & F
+(gender = c('M','F','M'))
+(gender = sample(x=c('M','F'), size=40, replace=T))
+(gender = sample(x=c('M','F'), size=10000, replace=T, prob=c(.6, .4)))
+table(gender)
+prop.table(table(gender))
 
 
 
