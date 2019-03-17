@@ -1,6 +1,6 @@
 # Missing values
 #missing values are indicate NA  keyword
-
+x = c(1, ,3)
 x = c(NA, 1, NA, 2,3, NA)
 x1=x
 x
@@ -37,6 +37,7 @@ mean(x2, na.rm=T)
 x2[is.na(x2)] = mean(x2, na.rm=T)
 sum(is.na(x2))
 
+?read.csv
 #install this library
 library(VIM)
 ?sleep

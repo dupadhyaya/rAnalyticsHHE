@@ -4,6 +4,8 @@
 #Read from CSV file in PC
 head(iris)
 write.csv(iris, "./data/iris.csv", row.names=F)
+write.csv(iris, "./data/irisT.csv", row.names=T)
+
 read1 = read.csv(file="./data/iris.csv", header = TRUE,sep = ",")
 read1
 read1 = read.csv(file="./data/dhiraj.csv", header = TRUE,sep = ",")
@@ -44,7 +46,7 @@ url_gsheet = "https://docs.google.com/spreadsheets/d/1QogGSuEab5SZyZIw1Q8h-0yrBN
 df_gsheet = as.data.frame(gsheet2tbl(url_gsheet))
 head(df_gsheet)
 
-url2 = "https://docs.google.com/spreadsheets/d/1Ay0QQyCuWAtiNaPqWDBznpPZNTX92Jv9fYUDx4usTZ0/edit#gid=0"
+url2 = "https://docs.google.com/spreadsheets/d/16KwkNnX6QAO23c03sCnzCElp3nRWfCp0g9tKCcKETsk/edit#gid=0"
 newdata = as.data.frame(gsheet2tbl(url2))
 head(newdata)
 

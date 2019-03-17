@@ -55,7 +55,7 @@ mentions(n=15)   # my tags
 mentions(n=5)
 
 #for user - 
-(tweets = userTimeline("riddheishad", n=10))
+(tweets = userTimeline("rajatkadam1998", n=10))
 userTimeline("rahulg_IITK", n=5)
 
 #------------------------------------

@@ -7,6 +7,7 @@ library(wordcloud2)
 
 # have a look to the example dataset
 head(demoFreq)
+dim(demoFreq)
 str(demoFreq)
 #wordcloud
 wordcloud2(demoFreq, size=1.6)
@@ -14,14 +15,14 @@ head(demoFreq[order(-demoFreq$freq),])
 ?wordcloud2
 
 #create your own set of words
-word = c('marketing','consumer', 'demand','price','business','iimkashipur', 'sunder','vignesh', 'jyoti','finance', 'operations')
+word = c('marketing','consumer', 'dhiraj','price','business','iimkashipur', 'sunder','vignesh', 'jyoti','finance', 'operations')
 freq = c(30,20,15,36,15,13,11,44,13,44,34)
 df1 = data.frame(word, freq)
 #rownames(df1)= word
 head(df1)
 #df1 = head(demoFreq)
 wordcloud2(df1, size=.4)
-
+?wordcloud2
 # Gives a proposed palette
 wordcloud2(demoFreq, size=1.6, color='random-dark')
 wordcloud2(df1, size=1, color='random-dark')

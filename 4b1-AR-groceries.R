@@ -17,9 +17,9 @@ arules::inspect(Groceries[1:5])
 #.01 * 9835; A + B + C = 3 items, A + B + C + D : 4 items
 frequentItems = eclat (Groceries, parameter = list(supp = 0.01, minlen= 2, maxlen = 5))
 #frequentItems = eclat (Groceries, parameter = list(minlen= 3))
-inspect(frequentItems[1:88])
+inspect(frequentItems[1:5])
 frequentItems
-inspect(frequentItems[10:100])
+inspect(frequentItems[])
 #inspect(frequentItems[100:122])
 #Descending Sort frequent items by count : 1 to 25 itemsets
 inspect(sort (frequentItems, by="count", decreasing=TRUE)[1:25])
