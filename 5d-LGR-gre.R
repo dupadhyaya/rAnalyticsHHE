@@ -22,7 +22,7 @@ summary(data)
 xtabs(~ admit + rank, data = data)
 xtabs(~ cyl + gear + am + vs , data = mtcars)
 
-
+head(data)
 #create Logistic Model
 mylogit <- glm(admit ~ gre + gpa + rank, data = data, family = "binomial")
 
@@ -41,6 +41,7 @@ data[data$admit==1,]
 (ndata4 = data.frame(gre=c(379,520), gpa=c(3.71,4), rank=factor(c(4,1))))
 (p3 =predict(mylogit, newdata=ndata4, type="response"))
 p3
+cbind(ndata4, p3)
 (p3b=ifelse(p3 < .5, 0, 1))
 cbind(ndata4, p3, p3b)
 

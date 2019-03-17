@@ -33,7 +33,7 @@ setup_twitter_oauth(consumerKey, consumerSecret, AccessToken, AccessTokenSecret)
 
 #type 1 : Yes 
 search.string <- "#businessanalytics"
-#search.string <- "#marketinganalytics"
+search.string <- "#marketinganalytics"
 
 no.of.tweets <- 100
 

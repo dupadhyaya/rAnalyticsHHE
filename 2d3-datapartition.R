@@ -48,12 +48,16 @@ test <- mtcars[-train_ind, ]
 
 # -----
 require(caTools)
+library(caTools)
+?require
 set.seed(101) 
 sample = sample.split(mtcars$am, SplitRatio = .75)
 sample
 train = subset(mtcars, sample == TRUE)
 test  = subset(mtcars, sample == FALSE)
-train; test
+train
+; test
+nrow(train); nrow(test)
 table(train$am); table(test$am)
 
 mtcars$id <- 1:nrow(mtcars)
