@@ -81,3 +81,4 @@ students %>% group_by(gender) %>% tally()
 students %>% group_by(course, gender) %>% tally()
 students %>% group_by(course) %>% summarise(mage = mean(age), mmarks1 = min(marks1), Mmarks1 = max(marks2)) %>% arrange(mage)
 
+#Day2 : Bennett
