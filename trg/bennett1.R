@@ -4,10 +4,6 @@ mtcars
 colSums(mtcars)
 barplot(table(mtcars$gear), col=1:4)
 
-
-
-
-
 #to execute a line - Control + Enter
 mtcars
 ?mtcars
