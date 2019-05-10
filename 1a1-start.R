@@ -1,4 +1,5 @@
 #initial commands
+
 # assign
 x1 = 3 #press control + enter to run the line
 x2 <- 3 # same 
