@@ -16,7 +16,7 @@ names(mtcars)
 
 #Filter----
 
-filter(mtcars, cyl == 8)
+filter(mtcars, cyl == 6)
 filter(mtcars, cyl < 6)
 
 # Multiple criteria
@@ -42,6 +42,7 @@ mutate(mtcars, cyl = NULL) #do not display cyl
 #slice-----
 slice(mtcars, 1L)
 slice(mtcars, n())
+
 slice(mtcars, 5:n())
 slice(mtcars, c(2,4,5,10))
 
@@ -309,3 +310,4 @@ df %>% top_n(-2)
 
 
 
+#gr

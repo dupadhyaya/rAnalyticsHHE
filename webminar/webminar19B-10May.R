@@ -65,3 +65,6 @@ mtcars %>% arrange(mpg, desc(hp))
 mtcars %>% sample_n(2)
 mtcars %>% sample_frac(.2)
 
+
+
+hist(mtcars$mpg, col=1:6)
