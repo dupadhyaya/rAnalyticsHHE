@@ -122,7 +122,7 @@ mtcars %>% filter(mpg > 23 & wt > 2)
 mtcars %>% select(mpg, wt) %>% filter(mpg > 23) 
 mtcars %>% 
   
-  filter(iris, Sepal.Length > 7)
+filter(iris, Sepal.Length > 7)
 filter(mtcars, cyl == 4)
 distinct(mtcars)
 df  = data.frame(a=c(2,2),b=c(2,2))
@@ -179,7 +179,7 @@ filter(mtcars, row_number() == n())
 filter(mtcars, between(row_number(), 5, n()))
 
 mtcars %>% group_by(cyl) %>% filter(1:3)
-> mtcars %.% group_by(cyl) %.% filter(sample(n(), 10))
+mtcars %.% group_by(cyl) %.% filter(sample(n(), 10))
 group_by( mtcars, cyl ) %>% integer_filter(1:2)
 ?integer_filter
 
@@ -291,5 +291,20 @@ df %>% top_n(2)
 # all rows with a value, or none.
 df %>% top_n(-2)
 
+#------------------------------
+#count NA Values in certain cols
+# define "demo" dataset
+ZZZ <- data.frame(n=c(1,2,NA),m=c(6,NA,NA),o=c(7,8,8))
+ZZZ
+# apply the counting function per columns
+apply(ZZZ, 2, function(x) length(which(!is.na(x))))
 
+nonNAs <- function(x) {
+  as.vector(apply(x, 2, function(x) length(which(!is.na(x)))))
+}
+nonNAs(ZZZ)
 
+colSums(!is.na(ZZZ))
+sum(!is.na(ZZZ))
+rowSums(!is.na(ZZZ))
+ZZZ
